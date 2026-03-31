@@ -1,9 +1,14 @@
 import os
+import sys
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
+
+# Allow imports from backend/ dir whether run as module or directly
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+
 from scraper import scrape_store
 from mapper import map_to_model
 from excel_export import export_xlsx
